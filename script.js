@@ -2,7 +2,7 @@ const video = document.getElementById('vid');
 const overlay = document.querySelector('.overlay');
 const progressFill = document.querySelector('.progress-fill');
 
-const OVERLAY_TIME = 10; // 10 seconds
+const OVERLAY_TIME = 15; // 10 seconds
 
 let overlayShown = false;
 
