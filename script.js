@@ -4,8 +4,8 @@ const progressFill = document.querySelector('.progress-fill');
 
 // Show overlay exactly when the video ends
 video.addEventListener('ended', () => {
-  overlay.style.display = 'flex'; // Show overlay
-  startProgressBar(); // Start fake progress bar
+  overlay.style.display = 'flex';
+  startProgressBar();
 });
 
 // Prevent play while overlay is visible
