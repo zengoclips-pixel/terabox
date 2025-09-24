@@ -2,10 +2,17 @@ const video = document.getElementById('vid');
 const overlay = document.querySelector('.overlay');
 const progressFill = document.querySelector('.progress-fill');
 
-// Show overlay exactly when the video ends
-video.addEventListener('ended', () => {
-  overlay.style.display = 'flex';
-  startProgressBar();
+const OVERLAY_TIME = 10; // 10 seconds
+
+let overlayShown = false;
+
+video.addEventListener('timeupdate', () => {
+  if (!overlayShown && video.currentTime >= OVERLAY_TIME) {
+    overlayShown = true;
+    overlay.style.display = 'flex'; // show overlay
+    video.pause();                  // optional: pause video behind overlay
+    startProgressBar();
+  }
 });
 
 // Prevent play while overlay is visible
@@ -19,9 +26,7 @@ video.addEventListener('play', () => {
 function startProgressBar() {
   let width = 0;
   const interval = setInterval(() => {
-    if (width >= 100) {
-      width = 0;
-    }
+    if (width >= 100) width = 0;
     width += 2;
     progressFill.style.width = width + '%';
   }, 100);
