@@ -1,14 +1,12 @@
 const video = document.getElementById('vid');
 const overlay = document.querySelector('.overlay');
 const progressFill = document.querySelector('.progress-fill');
-const SHOW_OVERLAY_AFTER = 10000; // show overlay after 5s teaser
 
-setTimeout(() => {
-  // Pause teaser video and show overlay
-  video.pause();
-  overlay.style.display = 'flex';
-  startProgressBar();
-}, SHOW_OVERLAY_AFTER);
+// Show overlay exactly when the video ends
+video.addEventListener('ended', () => {
+  overlay.style.display = 'flex'; // show overlay
+  startProgressBar(); // start fake progress bar
+});
 
 // Prevent play while overlay is visible
 video.addEventListener('play', () => {
