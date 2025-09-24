@@ -1,7 +1,7 @@
 const video = document.getElementById('vid');
 const overlay = document.querySelector('.overlay');
 const progressFill = document.querySelector('.progress-fill');
-const SHOW_OVERLAY_AFTER = 5000; // show overlay after 5s teaser
+const SHOW_OVERLAY_AFTER = 10000; // show overlay after 5s teaser
 
 setTimeout(() => {
   // Pause teaser video and show overlay
