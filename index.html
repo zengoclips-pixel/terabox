@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Terabox Influencer Program</title>
+  <title>Thank You</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,39 +10,48 @@
       text-align: center;
       padding: 50px;
     }
-    .loader {
+    #loaderGif {
       width: 100px;
       margin: 20px auto;
+      display: block;
     }
-    .button {
-      display: none; /* hide button initially */
+    #accessButton {
+      display: none;
       margin-top: 30px;
       padding: 15px 30px;
       font-size: 18px;
       color: #ffffff;
       background-color: #007bff;
-      border: none;
       border-radius: 8px;
       text-decoration: none;
+      display: block;
+      width: max-content;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-  <h1>Thank You for Joining the Terabox Influencer Program!</h1>
-  <p>Please wait a moment while your documents are prepared for access.</p>
+
+  <!-- Your Tally text can stay here if needed -->
+  <div id="tallyText">
+    <!-- Placeholder for Tally thank-you message -->
+  </div>
 
   <!-- Loader GIF -->
-  <img id="loaderGif" src="loader.gif" alt="Loading..." class="loader">
+  <img id="loaderGif" src="loader.gif" alt="Loading...">
 
-  <!-- Access button -->
-  <a id="accessButton" href="https://terabox.com/yourfilesurl" class="button">Access Your Files Here →</a>
+  <!-- Access Button -->
+  <a id="accessButton" href="https://terabox.com/yourfilesurl">
+    Access Your Files Here →
+  </a>
 
   <script>
-    // After 3 seconds, hide GIF and show button
     setTimeout(function() {
-      document.getElementById('loaderGif').style.display = 'none';
-      document.getElementById('accessButton').style.display = 'inline-block';
-    }, 3000);
+      document.getElementById('loaderGif').style.display = 'none'; // hide GIF
+      document.getElementById('accessButton').style.display = 'block'; // show button
+    }, 3000); // 3 seconds
   </script>
+
 </body>
 </html>
