@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff; /* matches Tally’s white background */
+      background-color: #ffffff;
       text-align: center;
       padding: 50px;
     }
@@ -15,7 +15,7 @@
       margin: 20px auto;
     }
     .button {
-      display: inline-block;
+      display: none; /* hide button initially */
       margin-top: 30px;
       padding: 15px 30px;
       font-size: 18px;
@@ -31,16 +31,17 @@
   <h1>Thank You for Joining the Terabox Influencer Program!</h1>
   <p>Please wait a moment while your documents are prepared for access.</p>
 
-  <img src="loader.gif" alt="Loading..." class="loader">
+  <!-- Loader GIF -->
+  <img id="loaderGif" src="loader.gif" alt="Loading..." class="loader">
 
-  <div id="buttonContainer" style="display:none;">
-    <a href="https://terabox.com/yourfilesurl" class="button">Access Your Files Here →</a>
-  </div>
+  <!-- Access button -->
+  <a id="accessButton" href="https://terabox.com/yourfilesurl" class="button">Access Your Files Here →</a>
 
   <script>
-    // Show the button after 3 seconds
+    // After 3 seconds, hide GIF and show button
     setTimeout(function() {
-      document.getElementById('buttonContainer').style.display = 'block';
+      document.getElementById('loaderGif').style.display = 'none';
+      document.getElementById('accessButton').style.display = 'inline-block';
     }, 3000);
   </script>
 </body>
