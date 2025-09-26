@@ -2,22 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Watch Full Video on TeraBox</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Terabox Influencer Program</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff; /* matches Tally’s white background */
+      text-align: center;
+      padding: 50px;
+    }
+    .loader {
+      width: 100px;
+      margin: 20px auto;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #ffffff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="video-container">
-    <video id="vid" src="teaser.mp4" autoplay muted></video>
-    <div class="overlay">
-      <p>Watch the full video on TeraBox!</p>
-      <p>Only available there — download now!</p>
-      <a href="YOUR_TERABOX_REFERRAL_LINK" target="_blank">📲 Download TeraBox</a>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
+  <h1>Thank You for Joining the Terabox Influencer Program!</h1>
+  <p>Please wait a moment while your documents are prepared for access.</p>
+
+  <img src="loader.gif" alt="Loading..." class="loader">
+
+  <div id="buttonContainer" style="display:none;">
+    <a href="https://terabox.com/yourfilesurl" class="button">Access Your Files Here →</a>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    // Show the button after 3 seconds
+    setTimeout(function() {
+      document.getElementById('buttonContainer').style.display = 'block';
+    }, 3000);
+  </script>
 </body>
 </html>
