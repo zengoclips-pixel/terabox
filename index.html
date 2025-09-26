@@ -1,57 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Thank You</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      text-align: center;
-      padding: 50px;
-    }
-    #loaderGif {
-      width: 100px;
-      margin: 20px auto;
-      display: block;
-    }
-    #accessButton {
-      display: none;
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 18px;
-      color: #ffffff;
-      background-color: #007bff;
-      border-radius: 8px;
-      text-decoration: none;
-      display: block;
-      width: max-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
-</head>
-<body>
+<!-- CSS Loader -->
+<style>
+  .spinner {
+    margin: 20px auto;
+    width: 60px;
+    height: 60px;
+    border: 6px solid #f3f3f3; /* light gray background */
+    border-top: 6px solid #007bff; /* blue spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
 
-  <!-- Your Tally text can stay here if needed -->
-  <div id="tallyText">
-    <!-- Placeholder for Tally thank-you message -->
-  </div>
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
 
-  <!-- Loader GIF -->
-  <img id="loaderGif" src="loader.gif" alt="Loading...">
+  #accessButton {
+    display: none; /* hidden initially */
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 8px;
+    text-decoration: none;
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
 
-  <!-- Access Button -->
-  <a id="accessButton" href="https://terabox.com/yourfilesurl">
-    Access Your Files Here →
-  </a>
+<!-- Loader -->
+<div class="spinner"></div>
 
-  <script>
-    setTimeout(function() {
-      document.getElementById('loaderGif').style.display = 'none'; // hide GIF
-      document.getElementById('accessButton').style.display = 'block'; // show button
-    }, 3000); // 3 seconds
-  </script>
+<!-- Access Button -->
+<a id="accessButton" href="https://terabox.com/yourfilesurl">
+  Access Your Files Here →
+</a>
 
-</body>
-</html>
+<script>
+  // After 3 seconds, hide spinner and show button
+  setTimeout(function() {
+    document.querySelector('.spinner').style.display = 'none';
+    document.getElementById('accessButton').style.display = 'block';
+  }, 3000);
+</script>
