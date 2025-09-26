@@ -1,62 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Terabox Access</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body {
-      background: #fff;
-      text-align: center;
-      padding: 50px;
-      font-family: Arial, sans-serif;
+    html,body{height:100%;margin:0}
+    body{
+      background:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      box-sizing:border-box;
+      text-align:center;
     }
 
-    /* Spinner with finite animation (3 spins, then stop) */
-    #loader {
-      margin: 50px auto;
-      width: 60px;
-      height: 60px;
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #007bff;
-      border-radius: 50%;
-      animation: spin 1s linear 3; /* 1s per spin, repeat 3 times */
+    /* spinner - finite animation (3 spins) */
+    .spinner {
+      width:60px;
+      height:60px;
+      border:6px solid #f3f3f3;
+      border-top:6px solid #007bff;
+      border-radius:50%;
+      animation: spin 1s linear 3;          /* 1s per rotation, repeat 3 times */
+      -webkit-animation: spin 1s linear 3;
+      margin:0 auto;
     }
+    @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+    @-webkit-keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
 
-    @keyframes spin {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Button hidden initially */
+    /* button starts not displayed (will be revealed on animationend) */
     #accessButton {
-      display: none;
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 18px;
-      color: #fff;
-      background-color: #007bff;
-      border-radius: 8px;
-      text-decoration: none;
+      display:none;
+      padding:12px 28px;
+      font-size:16px;
+      color:#fff;
+      background:#007bff;
+      border-radius:8px;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      -webkit-font-smoothing:antialiased;
     }
   </style>
 </head>
 <body>
 
-  <!-- Loader -->
-  <div id="loader"></div>
+  <!-- only the spinner visible initially -->
+  <div id="loader" class="spinner" aria-hidden="true"></div>
 
-  <!-- Button -->
-  <a id="accessButton" href="https://terabox.com/yourfilesurl">
+  <!-- button hidden until loader animation completes -->
+  <a id="accessButton" href="https://terabox.com/yourfilesurl" role="button" aria-hidden="true">
     Access Your Files Here →
   </a>
 
   <script>
-    // When spinner animation ends, hide spinner and show button
-    document.getElementById("loader").addEventListener("animationend", function() {
-      this.style.display = "none";
-      document.getElementById("accessButton").style.display = "inline-block";
-    });
-  </script>
+    (function() {
+      var loader = document.getElementById('loader');
+      var btn = document.getElementById('accessButton');
 
+      function revealButton() {
+        // remove loader
+        if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+
+        // reveal button and fade it in
+        btn.style.display = 'inline-block';
+        btn.style.opacity = '0';
+        // trigger a repaint then animate opacity so it fades in smoothly
+        requestAnimationFrame(function() {
+          btn.style.transition = 'opacity 280ms ease';
+          btn.style.opacity = '1';
+          btn.setAttribute('aria-hidden', 'false');
+        });
+      }
+
+      // listen for animation end (standard + webkit)
+      if (loader) {
+        loader.addEventListener('animationend', revealButton, false);
+        loader.addEventListener('webkitAnimationEnd', revealButton, false);
+      }
+
+      // Conservative fallback: if for some reason the event doesn't fire,
+      // reveal after 4s. Remove this block if you *never* want a timeout fallback.
+      setTimeout(function() {
+        if (btn.style.display === '' || btn.style.display === 'none') {
+          revealButton();
+        }
+      }, 4000);
+    })();
+  </script>
 </body>
 </html>
